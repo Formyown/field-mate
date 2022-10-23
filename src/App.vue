@@ -1,32 +1,25 @@
 <template>
-  <div id="app">
+  <t-config-provider :global-config="globalConfig">
+    <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
     </nav>
     <router-view />
   </div>
+  </t-config-provider>
+  
 </template>
+<script lang="ts">
+import merge from 'lodash/merge';
+import enConfig from 'tdesign-vue/es/locale/en_US';
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+import { Component, Prop, Ref, Vue, Watch } from "vue-property-decorator";
+
+@Component({})
+export default class App extends Vue {
+  public globalConfig = merge(enConfig, {
+    calendar: {},
+    table: {},
+    pagination: {},
+  });
 }
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+</script>
